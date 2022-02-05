@@ -1,7 +1,7 @@
 const fastify = require('fastify');
 const app = fastify();
 const mongoose = require('mongoose');
-// const noteRoutes = require('./routes/noteRoutes');
+const pollingRouter = require('./routes/pollingRouter');
 // const contentRangeHook = require('./hooks/contentRangeHook');
 
 try {
@@ -16,7 +16,10 @@ try {
 }
 
 // app.addHook('preHandler', contentRangeHook);
-// noteRoutes(app);
+pollingRouter(app);
+app.get('/', (req, res) => {
+    res.send('hallo')
+})
 
 app.listen(5000, (err, address) => {
   if (err) {
